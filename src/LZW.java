@@ -7,7 +7,7 @@ import static java.util.logging.Level.SEVERE;
 
 public class LZW {
 
-    public HashMap compdic, decompdic;
+    HashMap compdic, decompdic;
     short lastcode = 0, dlastcode = 0;
 
     LZW(String fileName) {
@@ -49,7 +49,7 @@ public class LZW {
             for (short code; (code = (short) rdr.read()) != -1; ) {
                 char c = (char) code;
                 if (!compdic.containsKey(s + c)) {
-                    fout.writeShort(Short.parseShort(compdic.get(s).toString()));
+                    fout.writeShort(Integer.parseInt(compdic.get(s).toString()));
                     compdic.put(s + c, ++lastcode);
                     s = "" + c;
                 } else s = s + c;
