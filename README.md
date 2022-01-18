@@ -1,5 +1,6 @@
-# LZW
-text compressor
+
+# LZW text compressor
+
 
 import java.util.*;
  
