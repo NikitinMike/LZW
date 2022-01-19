@@ -5,20 +5,21 @@ import java.util.logging.Logger;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.SEVERE;
 
-public class LZW1 {
+public class LZW {
 
-    HashMap compdic, decompdic;
+    HashMap<String, Short> compdic;
+    HashMap<Short,String> decompdic;
     short lastcode = 0, dlastcode = 0;
 
-    LZW1(String fileName) {
-        compdic = new HashMap<String, Integer>();
-        decompdic = new HashMap<Integer, String>();
+    LZW(String fileName) {
+        compdic = new HashMap<>();
+        decompdic = new HashMap<>();
         createDictionary(fileName);
     }
 
     public static void main(String[] args) {
         String fileName = "hamlet.txt";
-        LZW1 lzw = new LZW1(fileName);
+        LZW lzw = new LZW(fileName);
         lzw.compressFile(fileName);
         lzw.decompressFile(fileName);
     }
@@ -37,7 +38,7 @@ public class LZW1 {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(LZW1.class.getName()).log(SEVERE, null, ex);
+            Logger.getLogger(LZW.class.getName()).log(SEVERE, null, ex);
         }
     }
 
@@ -60,7 +61,7 @@ public class LZW1 {
             rdr.close();
             System.out.print("done");
         } catch (Exception ex) {
-            Logger.getLogger(LZW1.class.getName()).log(SEVERE, null, ex);
+            Logger.getLogger(LZW.class.getName()).log(SEVERE, null, ex);
         }
     }
 
@@ -69,12 +70,12 @@ public class LZW1 {
             FileWriter fos = new FileWriter(fileName + "2.txt");
             System.out.print("\nDecompressing...");
             short priorcode = fin.readShort();
-            fos.write(decompdic.get(priorcode).toString());
+            fos.write(decompdic.get(priorcode));
             for (short codeword; (codeword = fin.readShort()) != -1; ) {
                 if (codeword == 0) break;
-                String priorstr = decompdic.get(priorcode).toString();
+                String priorstr = decompdic.get(priorcode);
                 if (decompdic.containsKey(codeword)) {
-                    String str = decompdic.get(codeword).toString();
+                    String str = decompdic.get(codeword);
                     fos.write(str);
                     decompdic.put(++dlastcode, priorstr + str.charAt(0));
                 } else {
@@ -89,7 +90,7 @@ public class LZW1 {
         } catch (Exception ex) {
             //Logger.getLogger(LZW.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("\n\nError: " + ex.getMessage());
-            System.out.print(decompdic.get(133) + " " + dlastcode);
+            System.out.print(dlastcode);
         }
     }
 }

@@ -1,11 +1,20 @@
-import java.util.*;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LZW2 {
+
+    static int DICTINIT = 256*256;
     /** Compress a string to a list of output symbols. */
     public static List<Integer> compress(String uncompressed) {
 
         // Build the dictionary.
-        int dictSize = 256;
+        int dictSize = DICTINIT;
         Map<String,Integer> dictionary = new HashMap<>();
         for (int i = 0; i < dictSize; i++) dictionary.put("" + (char)i, i);
 
@@ -30,7 +39,7 @@ public class LZW2 {
     public static String decompress(List<Integer> compressed) {
 
         // Build the dictionary.
-        int dictSize = 256;
+        int dictSize = DICTINIT;
         Map<Integer,String> dictionary = new HashMap<>();
         for (int i = 0; i < dictSize; i++) dictionary.put(i, "" + (char)i);
 
@@ -49,10 +58,11 @@ public class LZW2 {
         return result.toString();
     }
  
-    public static void main(String[] args) {
-        List<Integer> compressed = compress("TOBEORNOTTOBEORTOBEORNOT");
-        System.out.println(compressed);
+    public static void main(String[] args) throws IOException {
+        String content = Files.readString(Paths.get("hamlet.txt"), StandardCharsets.UTF_8);
+        List<Integer> compressed = compress(content);
+        System.out.println(compressed.size());
         String decompressed = decompress(compressed);
-        System.out.println(decompressed);
+        System.out.println(decompressed.length());
     }
 }
