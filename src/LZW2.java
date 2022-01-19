@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class LZW2 {
 
-    static int DICTINIT = 256*256;
+    static int DICTINIT = 0x10000;
     /** Compress a string to a list of output symbols. */
     public static List<Integer> compress(String uncompressed) {
 
@@ -60,6 +60,7 @@ public class LZW2 {
  
     public static void main(String[] args) throws IOException {
         String content = Files.readString(Paths.get("hamlet.txt"), StandardCharsets.UTF_8);
+        System.out.println(content.length());
         List<Integer> compressed = compress(content);
         System.out.println(compressed.size());
         String decompressed = decompress(compressed);

@@ -10,7 +10,6 @@ United States, you’ll have to check the laws of the country where you
 are located before using this ebook.
 
 
-
 Title: Hamlet
 
 Author: William Shakespeare
@@ -25,19 +24,13 @@ Character set encoding: UTF-8
 *** START OF THIS PROJECT GUTENBERG EBOOK HAMLET ***
 
 
-
 This etext was prepared by Dianne Bean.
 
 
 THE TRAGEDY OF HAMLET, PRINCE OF DENMARK
 
 
-
-
 by William Shakespeare
-
-
-
 
 
 
@@ -5085,13 +5078,3 @@ This Web site includes information about Project Gutenberg-tm,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
-
-
-
-
-
-
-
-
-
