@@ -5,12 +5,12 @@ import java.util.logging.Logger;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Level.SEVERE;
 
-public class LZW {
+public class LZW1 {
 
     HashMap compdic, decompdic;
     short lastcode = 0, dlastcode = 0;
 
-    LZW(String fileName) {
+    LZW1(String fileName) {
         compdic = new HashMap<String, Integer>();
         decompdic = new HashMap<Integer, String>();
         createDictionary(fileName);
@@ -18,7 +18,7 @@ public class LZW {
 
     public static void main(String[] args) {
         String fileName = "hamlet.txt";
-        LZW lzw = new LZW(fileName);
+        LZW1 lzw = new LZW1(fileName);
         lzw.compressFile(fileName);
         lzw.decompressFile(fileName);
     }
@@ -37,7 +37,7 @@ public class LZW {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(LZW.class.getName()).log(SEVERE, null, ex);
+            Logger.getLogger(LZW1.class.getName()).log(SEVERE, null, ex);
         }
     }
 
@@ -60,7 +60,7 @@ public class LZW {
             rdr.close();
             System.out.print("done");
         } catch (Exception ex) {
-            Logger.getLogger(LZW.class.getName()).log(SEVERE, null, ex);
+            Logger.getLogger(LZW1.class.getName()).log(SEVERE, null, ex);
         }
     }
 
