@@ -1,0 +1,3 @@
+
+# LZW text compressor
+
