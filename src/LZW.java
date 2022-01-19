@@ -54,7 +54,7 @@ public class LZW {
                     s = "" + c;
                 } else s = s + c;
             }
-            fout.writeShort(Short.parseShort(compdic.get(s).toString()));
+            fout.writeShort(Integer.parseInt(compdic.get(s).toString()));
             fout.writeShort(0);
             fout.close();
             rdr.close();
