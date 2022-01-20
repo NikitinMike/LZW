@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class LZW2 {
 
-    static int DICTINIT = 0x10000;
+    final static int DICTINIT = 0x10000;
     /** Compress a string to a list of output symbols. */
     public static List<Integer> compress(String uncompressed) {
 
